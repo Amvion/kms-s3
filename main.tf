@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 data "aws_partition" "current" {}
 data "aws_region" "current" {}
 
-# https://docs.aws.amazon.com/kms/latest/developerguide/services-s3.html#s3-customer-cmk-policy
+
 
 data "aws_iam_policy_document" "s3" {
 
@@ -87,11 +87,11 @@ data "aws_iam_policy_document" "s3" {
 }
 
 resource "aws_kms_key" "s3" {
-  description             = var.description
-  deletion_window_in_days = var.key_deletion_window_in_days
+  
+  
   enable_key_rotation     = var.enable_key_rotation
   policy                  = data.aws_iam_policy_document.s3.json
-  tags                    = var.tags
+
 }
 
 resource "aws_kms_alias" "s3" {
